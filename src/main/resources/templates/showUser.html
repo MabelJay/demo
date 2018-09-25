@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>show page</title>
+    <link href="css/jquery.searchableSelect.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+<select>
+    <option value="choice">choice</option>
+    <option th:each="list:${list}" th:text="${list.userName}"></option>
+</select>
+<div id="div1">
+    <ul id="ulEle">
+
+    </ul>
+</div>
+<div>
+    <input type="button" value="clear" id="clear">
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.searchableSelect.js"></script>
+<script>
+    $(function(){
+        $('select').searchableSelect();
+    });
+</script>
+<script>
+    var choice = document.querySelector("select");
+    var ulEle = document.getElementById("ulEle");
+    console.log(choice);
+    choice.onchange = function () {
+       // console.log(this.value);
+        var liEle = document.createElement('li');
+        liEle.innerText = this.value;
+        ulEle.appendChild(liEle);
+    }
+</script>
+<script>
+    var clear = document.getElementById('clear');
+    var ulEle = document.getElementById("ulEle");
+    clear.onclick = function () {
+        while(ulEle.firstChild){
+            ulEle.removeChild(ulEle.firstChild);
+        }
+    }
+    
+</script>
+</body>
+</body>
+</html>
